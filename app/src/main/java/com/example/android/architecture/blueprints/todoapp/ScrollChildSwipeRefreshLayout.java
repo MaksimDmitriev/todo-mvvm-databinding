@@ -43,9 +43,15 @@ public class ScrollChildSwipeRefreshLayout extends SwipeRefreshLayout {
 
     @Override
     public boolean canChildScrollUp() {
+        // tcao: 解决SwipeRefreshLayout无法上滑得问题，比如：
+        // 1. Pulling down is not working if there are no items and the empty view is shown. (https://github.com/UweTrottmann/SeriesGuide/issues/390)
+        // 2. Scroll down the list(inside of the relative layout which is child view of the SwipeRefreshLayout) sometimes wont scroll back up instead it runs the onRefresh function.(https://stackoverflow.com/a/38952166)
+
+        // canViewScrollUp() checks if mScrollUpChild can not scroll up, if we return TRUE from here, swipe to refresh is disabled.
         if (mScrollUpChild != null) {
             return ViewCompat.canScrollVertically(mScrollUpChild, -1);
         }
+        // Fall back to default implementation
         return super.canChildScrollUp();
     }
 

@@ -131,6 +131,7 @@ public class TasksFragment extends Fragment {
     public void onDestroy() {
         mListAdapter.onDestroy();
         if (mSnackbarCallback != null) {
+            // tcao: mSnackbarCallback隐式引用fragment对象，所以如果onDestroy不remove，会造成潜在的内存泄漏
             mTasksViewModel.snackbarText.removeOnPropertyChangedCallback(mSnackbarCallback);
         }
         super.onDestroy();
@@ -172,8 +173,9 @@ public class TasksFragment extends Fragment {
     }
 
     private void setupFab() {
-        FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_add_task);
+        // tcao: TasksFragBinding只记录使用了data item的view信息，所以
+        // FloatingActionButton view的获取需要按照原来的方式
+        FloatingActionButton fab = getActivity().findViewById(R.id.fab_add_task);
 
         fab.setImageResource(R.drawable.ic_add);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +219,7 @@ public class TasksFragment extends Fragment {
 
         private TasksRepository mTasksRepository;
 
-        public TasksAdapter(List<Task> tasks, TasksActivity taskItemNavigator,
+        public TasksAdapter(List<Task> tasks, @Nullable TasksActivity taskItemNavigator,
                             TasksRepository tasksRepository,
                             TasksViewModel tasksViewModel) {
             mTaskItemNavigator = taskItemNavigator;

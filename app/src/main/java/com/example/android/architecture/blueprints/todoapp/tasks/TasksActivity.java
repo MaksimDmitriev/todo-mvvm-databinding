@@ -59,6 +59,7 @@ public class TasksActivity extends AppCompatActivity implements TaskItemNavigato
         TasksFragment tasksFragment = findOrCreateViewFragment();
 
         mViewModel = findOrCreateViewModel();
+        // tcao: 保证activity onCreate时将activity添加为ViewModel的依赖
         mViewModel.setNavigator(this);
 
         // Link View and ViewModel
@@ -67,6 +68,8 @@ public class TasksActivity extends AppCompatActivity implements TaskItemNavigato
 
     @Override
     protected void onDestroy() {
+        // tcao: 保证activity onDestory时将activity从ViewModel中去除依赖，防止内存泄露（ViewModel生命周期比activity长）
+        // configure changed 时先onDestory后onCreate
         mViewModel.onActivityDestroyed();
         super.onDestroy();
     }
