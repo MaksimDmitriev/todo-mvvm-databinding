@@ -46,6 +46,11 @@ import java.util.List;
  */
 public class TasksViewModel extends BaseObservable {
 
+    /**
+     * tcao: databinding中绑定的view的数据和视图更新处理都在这里通过Observable类完成
+     * Fragment里不管这些被databinding配置过的view状态
+     */
+
     // These observable fields will update Views automatically
     public final ObservableList<Task> items = new ObservableArrayList<>();
 
@@ -63,6 +68,10 @@ public class TasksViewModel extends BaseObservable {
 
     private TasksFilterType mCurrentFiltering = TasksFilterType.ALL_TASKS;
 
+    /**
+     * tcao: 只有viewModel会跟TasksRepository，TasksRepository封装了data的处理(cached, local data, remote data)
+     * viewModel只需要通过TasksRepository处理data就行了
+     */
     private final TasksRepository mTasksRepository;
 
     private final ObservableBoolean mIsDataLoadingError = new ObservableBoolean(false);
@@ -113,6 +122,7 @@ public class TasksViewModel extends BaseObservable {
     public void setFiltering(TasksFilterType requestType) {
         mCurrentFiltering = requestType;
 
+        // tcao: 这里就是通过设置值直接改变对应view的显示(属性)状态
         // Depending on the filter type, set the filtering label, icon drawables, etc.
         switch (requestType) {
             case ALL_TASKS:

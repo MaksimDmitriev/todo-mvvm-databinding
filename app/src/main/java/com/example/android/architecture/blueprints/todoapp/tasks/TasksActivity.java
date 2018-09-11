@@ -39,6 +39,14 @@ import com.example.android.architecture.blueprints.todoapp.util.ActivityUtils;
 import com.example.android.architecture.blueprints.todoapp.util.EspressoIdlingResource;
 
 
+/**
+ * TasksActivity的主要功能：
+ *  1. 处理Toolbar
+ *  2. 处理Navigation drawer
+ *  3. 绑定Fragment
+ *  4. 创建viewModel并设定viewModel的生命周期
+ *  5. 处理并分发Activity层需要处理的回调
+ */
 public class TasksActivity extends AppCompatActivity implements TaskItemNavigator, TasksNavigator {
 
     private DrawerLayout mDrawerLayout;

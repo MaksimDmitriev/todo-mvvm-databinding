@@ -47,6 +47,11 @@ import java.util.List;
 
 /**
  * Display a grid of {@link Task}s. User can choose to view all, active or completed tasks.
+ *
+ * tcao: TasksFragment主要功能：
+ *  1. 绑定databinding和view
+ *  2. 处理非databinding的视图逻辑：OptionMenu, Fab, refreshLayout, snackbar
+ *  3. 处理ListView的adapter（绑定adapter中的databinding）
  */
 public class TasksFragment extends Fragment {
 

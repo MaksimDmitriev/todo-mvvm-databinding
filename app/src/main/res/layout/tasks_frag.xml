@@ -30,6 +30,8 @@
 
     </data>
 
+    <!-- tcao: databinding对命名空间不敏感，所以"app:refreshing"会被解读为setRefreshing对应refreshLayout的setRefreshing方法 -->
+    <!-- 即可以使用自定义属性的方式创造view类中存在的setter/getter方法，方便在databinding中使用！ -->
 <com.example.android.architecture.blueprints.todoapp.ScrollChildSwipeRefreshLayout
     android:id="@+id/refresh_layout"
     android:layout_width="match_parent"
