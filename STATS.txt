@@ -1,0 +1,3 @@
+BUILD SUCCESSFUL in 26s
+
+APK size: 1242
