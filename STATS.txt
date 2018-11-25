@@ -8,3 +8,6 @@ BUILD SUCCESSFUL in 29s
 APK size: 1107
 Lint and ShrinkResources - 1 - shrinkResources doesn't delete <dimen name="z_width">12dp</dimen>,
 but lint detects it.
+shrinkResources detects unused drawables, layouts, anim, mipmap, etc.
+It looks like iot doesn't work with dimens. However, as I said above, unused dimens are detected by
+Lint.
