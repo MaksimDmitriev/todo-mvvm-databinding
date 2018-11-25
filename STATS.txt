@@ -3,3 +3,8 @@ APK size: 1242
 
 BUILD SUCCESSFUL in 25s
 APK size: 1146
+
+BUILD SUCCESSFUL in 29s
+APK size: 1107
+Lint and ShrinkResources - 1 - shrinkResources doesn't delete <dimen name="z_width">12dp</dimen>,
+but lint detects it.
